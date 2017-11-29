@@ -1,7 +1,19 @@
-$bg-colour: #ccc;
+$break-small: 480px;
+$break-large: 1024px;
+
+@mixin respond-to($media) {
+	@if $media == handhelds {
+		@media only screen and (max-width: $break-small) { @content; }
+	}
+	@else if $media == medium-screens {
+		@media only screen and (min-width: $break-small + 1) and (max-width: $break-large - 1) { @content; }
+	}
+	@else if $media == wide-screens {
+		@media only screen and (min-width: $break-large) { @content; }
+	}
+}
 
 body {
-	background-color: $bg-colour;
 }
 
 
@@ -15,8 +27,18 @@ body {
 		padding: 0;
 
 		&-item {
-			flex-basis: 25%;
+
+			@include respond-to(medium-screens) {
+				flex-basis: 50%;
+			}
+
+			@include respond-to(wide-screens) {
+				flex-basis: 25%;
+			}
+
 		}
+
+
 	}
 
 	&-info {
@@ -28,13 +50,21 @@ body {
 			border-bottom: 1px solid black;
 			font-size: 1.5em;
 			font-weight: 500;
+			display: inline-block;
+			margin-bottom: 25px;
+
+		}
+
+		&_price {
+			margin-bottom: 10px;
 		}
 
 		&_image {
 			width: 100%;
 			height: 200px;
-			background-position-x: 100%;
-			background-position-y: 100%;
+			background-size: cover;
+			background-position: center;
+
 		}
 	}
 
