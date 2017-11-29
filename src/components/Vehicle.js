@@ -39,3 +39,11 @@ export default class Vehicle extends Component {
     return null;
   }
 };
+
+Vehicle.propTypes = {
+  id: PropTypes.string.isRequired,
+  media: PropTypes.shape({
+    url: PropTypes.string.isRequired
+  }).isRequired
+
+}

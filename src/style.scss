@@ -5,6 +5,9 @@ $break-large: 1024px;
 	@if $media == handhelds {
 		@media only screen and (max-width: $break-small) { @content; }
 	}
+	@else if $media == medium-and-up {
+		@media only screen and (min-width: $break-small + 1) { @content; }
+	}
 	@else if $media == medium-screens {
 		@media only screen and (min-width: $break-small + 1) and (max-width: $break-large - 1) { @content; }
 	}
@@ -43,9 +46,17 @@ $break-large: 1024px;
 	&-info {
 		text-align: center;
 		flex-grow: 1;
+		border: 1px solid lightgray;
+		display: flex;
+		align-content: flex-start;
+
+		@include respond-to(medium-and-up) {
+			flex-wrap: wrap;
+		}
 
 		&-details {
 			padding: 10px;
+			flex-grow: 1;
 
 			&_name {
 			border-top: 1px solid black;
@@ -63,10 +74,19 @@ $break-large: 1024px;
 		}
 
 		&_image {
-			width: 100%;
-			height: 200px;
+			flex-basis: 100%;
+			max-width: 30%;
+			height: auto;
 			background-size: cover;
 			background-position: center;
+
+			@include respond-to(medium-and-up) {
+				width: 100%;
+				height: 200px;
+				background-size: cover;
+				background-position: center;
+				max-width: none;
+			}
 		 }
 	}
 
