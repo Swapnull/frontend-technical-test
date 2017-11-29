@@ -13,10 +13,6 @@ $break-large: 1024px;
 	}
 }
 
-body {
-}
-
-
 .vehicle {
 
 	&-list {
@@ -27,25 +23,31 @@ body {
 		padding: 0;
 
 		&-item {
+			display: flex;
+			flex-grow: 1;
 
 			@include respond-to(medium-screens) {
 				flex-basis: 50%;
+				max-width: 50%;
 			}
 
 			@include respond-to(wide-screens) {
 				flex-basis: 25%;
+				max-width: 25%;
 			}
-
 		}
-
 
 	}
 
+
 	&-info {
 		text-align: center;
-		padding: 10%;
+		flex-grow: 1;
 
-		&_name {
+		&-details {
+			padding: 10px;
+
+			&_name {
 			border-top: 1px solid black;
 			border-bottom: 1px solid black;
 			font-size: 1.5em;
@@ -53,10 +55,11 @@ body {
 			display: inline-block;
 			margin-bottom: 25px;
 
-		}
+			}
 
-		&_price {
-			margin-bottom: 10px;
+			&_price {
+				margin-bottom: 10px;
+			}
 		}
 
 		&_image {
@@ -64,8 +67,7 @@ body {
 			height: 200px;
 			background-size: cover;
 			background-position: center;
-
-		}
+		 }
 	}
 
 

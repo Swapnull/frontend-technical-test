@@ -22,16 +22,15 @@ export default class Vehicle extends Component {
 
   render() {
     if (this.state.data) {
-      const { id, media } = this.props;
+      const { id, media: [media] } = this.props;
       const { price, description } = this.state.data;
-      console.log(media[0])
       return (
-        <span>
-          <div className="vehicle-info_image" style={{ backgroundImage: `url('${media[0].url}')` }}/>
-          <div className="vehicle-info">
-            <span className="vehicle-info_name">{ id.toUpperCase() }</span>
-            <div className="vehicle-info_price">From { price }</div>
-            <div className="vehicle-info_description">{description}</div>
+        <span className="vehicle-info">
+          <div className="vehicle-info_image" style={{ backgroundImage: `url('${media.url}')` }}/>
+          <div className="vehicle-info-details">
+            <span className="vehicle-info-details_name">{ id.toUpperCase() }</span>
+            <div className="vehicle-info-details_price">From { price }</div>
+            <div className="vehicle-info-details_description">{description}</div>
           </div>
         </span>
       )
