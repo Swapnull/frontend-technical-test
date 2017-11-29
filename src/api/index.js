@@ -1,32 +1,27 @@
-/**
-* This is an example request. Create your own using best practises for
-* handling asynchronous data fetching
-**/
+const serviceHelper = url => {
+	return new Promise((resolve, reject) => {
+		if (!url) reject('No URL provided');
 
-export const getVehicleList = cb => {
-    const vehicles = new XMLHttpRequest();
-    vehicles.open('GET', 'http://localhost:9988/api/vehicle');
+    const req = new XMLHttpRequest();
+    req.open('GET', `http://localhost:9988${url}`);
 
-    vehicles.onreadystatechange = function() {
-        if(vehicles.readyState === 4) {
- 		    if(vehicles.status === 200) {
- 			    cb(vehicles.responseText);
-		    }
-		}
-	};
 
-	vehicles.send();
+    req.onreadystatechange = () => {
+      if(req.readyState === 4) {
+      	if(req.status === 200 && req.status < 300) {
+          try {
+            console.log(req.responseText);
+            resolve(JSON.parse(req.responseText));
+          } catch (err) {
+            reject(`Error while hitting ${path}`);
+          }
+        } else { console.log('7'); reject(req.response) };
+      }
+    };
+
+    req.send();
+  })
 };
 
-export const getVehicle = (id, cb) => {
-		const vehicle = new XMLHttpRequest();
-		vehicle.open('GET', `http://localhost:9988/api/vehicle/${id}`);
-
-		vehicle.onreadystatechange = function() {
-    	if (vehicle.readyState === 4) {
-				if (vehicle.status === 200) cb(vehicle.responseText);
-    	}
-		};
-
-		vehicle.send();
-};
+export const getVehicleList = () => serviceHelper('/api/vehicle');
+export const getVehicleDetail = url => serviceHelper(url);

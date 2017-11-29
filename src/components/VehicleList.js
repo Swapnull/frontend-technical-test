@@ -12,13 +12,10 @@ export default class VehicleList extends Component {
 		}
 	}
 
-	componentDidMount() {
-    getVehicleList(vehicles => {
-			this.setState({
-				data: JSON.parse(vehicles)
-			})
-		});
-	}
+  async componentDidMount() {
+    const vehicles = await getVehicleList();
+    this.setState({ data: vehicles });
+  }
 
 	render() {
 		if(this.state.data) {

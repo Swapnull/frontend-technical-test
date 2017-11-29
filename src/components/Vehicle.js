@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { getVehicle } from '../api';
+import { getVehicleDetail } from '../api';
 
 export default class Vehicle extends Component {
 
@@ -12,12 +12,9 @@ export default class Vehicle extends Component {
     }
   }
 
-  componentDidMount() {
-    getVehicle(this.props.id, vehicle => {
-      this.setState({
-        data: JSON.parse(vehicle)
-      })
-    });
+  async componentDidMount() {
+    const vehicle = await getVehicleDetail(this.props.url);
+    this.setState({ data: vehicle });
   }
 
   render() {
