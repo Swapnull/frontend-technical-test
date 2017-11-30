@@ -49,7 +49,11 @@ gulp.task('images', function () {
   return gulp.src('./images/**/*.jpg').pipe(gulp.dest('dist/images'));
 });
 
+gulp.task('favicon', function () {
+  return gulp.src('./favicon.ico').pipe(gulp.dest('dist'));
+});
+
 gulp.task('default', function () {
-  gulp.start('images','sass', 'sass:watch', 'js', 'js:watch', 'server', 'server:watch');
+  gulp.start('images','sass', 'sass:watch', 'js', 'js:watch', 'server', 'server:watch', 'favicon');
 });
 
