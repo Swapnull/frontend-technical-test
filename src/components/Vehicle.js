@@ -8,7 +8,7 @@ export default class Vehicle extends Component {
     super(props);
 
     this.state = {
-      data: null
+      data: {}
     }
   }
 
@@ -18,29 +18,26 @@ export default class Vehicle extends Component {
   }
 
   render() {
-    if (this.state.data) {
-      const { id, media: [media] } = this.props;
-      const { price, description } = this.state.data;
-      return (
-        <span className="vehicle-info">
-          <div className="vehicle-info_image" style={{ backgroundImage: `url('${media.url}')` }}/>
-          <div className="vehicle-info-details">
-            <span className="vehicle-info-details_name">{ id.toUpperCase() }</span>
-            <div className="vehicle-info-details_price">From { price }</div>
-            <div className="vehicle-info-details_description">{description}</div>
-          </div>
-        </span>
-      )
-    }
+    const { id, media: [media] } = this.props;
+    const { price, description } = this.state.data;
+    return (
+      <span className="vehicle-info">
+        <div className="vehicle-info_image" style={{ backgroundImage: `url('${media.url}')` }}/>
+        <div className="vehicle-info-details">
+          <span className="vehicle-info-details_name">{ id.toUpperCase() }</span>
+          <div className="vehicle-info-details_price">From { price }</div>
+          <div className="vehicle-info-details_description">{description}</div>
+        </div>
+      </span>
+    )
 
-    return null;
   }
 };
 
 Vehicle.propTypes = {
   id: PropTypes.string.isRequired,
-  media: PropTypes.shape({
+  media: PropTypes.arrayOf(PropTypes.shape({
     url: PropTypes.string.isRequired
-  }).isRequired
+  })).isRequired
 
 }

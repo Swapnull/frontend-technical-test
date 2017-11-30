@@ -10,12 +10,11 @@ const serviceHelper = url => {
       if(req.readyState === 4) {
       	if(req.status === 200 && req.status < 300) {
           try {
-            console.log(req.responseText);
             resolve(JSON.parse(req.responseText));
           } catch (err) {
             reject(`Error while hitting ${path}`);
           }
-        } else { console.log('7'); reject(req.response) };
+        } else { reject(req.response) };
       }
     };
 
