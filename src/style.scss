@@ -1,3 +1,5 @@
+$font-stack: Gothic, Helvetica, sans-serif;
+
 $break-small: 480px;
 $break-large: 1024px;
 
@@ -14,6 +16,10 @@ $break-large: 1024px;
 	@else if $media == wide-screens {
 		@media only screen and (min-width: $break-large) { @content; }
 	}
+}
+
+html {
+	font: 100% $font-stack;
 }
 
 .vehicle {
@@ -64,7 +70,7 @@ $break-large: 1024px;
 			font-size: 1.5em;
 			font-weight: 500;
 			display: inline-block;
-			margin-bottom: 25px;
+			margin-bottom: 15px;
 
 			}
 
